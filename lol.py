@@ -32,10 +32,12 @@ else:
 ### HEADERS ###
 
 def banner():
-    print("""
- NokiaC3-00/5.0 (07.20) Profile/MIDP-2.1 Configuration/CLDC-1.1 Mozilla/5.0 AppleWebKit/420+ (KHTML, like Gecko) Safari/420+
+   ___                _          
+  / _ \_______ __ _  (_)_ ____ _  
+ / ___/ __/ -_)  ' \/ / // /  ' \ 
+/_/  /_/  \__/_/_/_/_/\_,_/_/_/_/
+          """)
 
-""")
 
 host="https://mbasic.facebook.com"
 ok = []
