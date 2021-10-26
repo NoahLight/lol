@@ -351,8 +351,7 @@ def choose_menu():
 		ress()
 	elif r=="8":
 		menu_user_agent()
-    elif r=="9":
-    	cek_sesi()
+        
 	elif r=="0":
 		try:
 			jalan(k+"\n["+p+"•"+k+"]"+p+" Thanks For Using My Script")
